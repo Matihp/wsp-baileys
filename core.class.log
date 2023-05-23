@@ -1,0 +1,19 @@
+[handleMsg]:  {
+  key: {
+    remoteJid: '5493462645267@s.whatsapp.net',
+    fromMe: false,
+    id: '1D6E7890ABC519A8E1ECF3C460F54B86',
+    participant: undefined
+  },
+  messageTimestamp: 1684809538,
+  pushName: 'Matias Contreras',
+  message: Message {
+    conversation: '3',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '3',
+  from: '5493462645267'
+}
