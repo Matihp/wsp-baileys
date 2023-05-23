@@ -4,7 +4,16 @@ const QRPortalWeb = require('@bot-whatsapp/portal')
 const BaileysProvider = require('@bot-whatsapp/provider/baileys')
 const MockAdapter = require('@bot-whatsapp/database/mock')
 
-const flowSecundario = addKeyword(['2', 'siguiente']).addAnswer(['📄 Aquí tenemos el flujo secundario'])
+let fechaFinal;
+
+const flowSecundario = addKeyword(['2', 'siguiente']).addAnswer(
+    ['📄 Aquí tenemos el flujo secundario'],
+    null,
+    (ctx)=>{
+        fechaFinal = new Date();
+        
+    }
+    )
 
 const FlowNuevos = addKeyword(['1','Primero']).addAnswer(
     [
@@ -49,12 +58,14 @@ const flowConsultas = addKeyword(['3','Consultas']).addAnswer(
 )
 
 const flowPrincipal = addKeyword(EVENTS.WELCOME) 
+    .addAction(async (ctx, { flowDynamic, endFlow }) => {
+            let date = new Date()
+            
+            if (fechaFinal != undefined)
+            return endFlow();
+        })
     .addAnswer('🙌 Hola bienvenido a la clínica de Leonardo')
-    .addAction(async (ctx, {provider}) => {
-        let date = new Date()
-        console.log(ctx)
-        console.log(date)
-      })
+    
     .addAnswer(
         [
             '👉 *1* Turnos pacientes nuevos',
