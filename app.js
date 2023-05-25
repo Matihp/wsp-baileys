@@ -17,10 +17,22 @@ const leerJson=async()=>{
 }
 
 const escribirJson=(data)=>{
-    const updatedJsonData = JSON.stringify(data); // Convierte el JSON actualizado en una cadena
+    const updatedJsonData = JSON.stringify(data);
     fs.writeFileSync('data.json', updatedJsonData);
     return updatedJsonData;
 }
+
+const FlowTerciario = addKeyword([EVENTS.WELCOME]).addAnswer([
+    'Se le contestara en breve para asignarle su turno,*no podra ser cambiado*'
+],{
+    delay:2000, 
+})
+
+const FlowAnterior = addKeyword([5,cinco]).addAnswer([
+    'Se le contestara en breve para asignarle su turno,*no podra ser cambiado*'
+],{
+    delay:2000, 
+})
 
 const flowSecundario = addKeyword(['2', 'siguiente']).addAnswer(
     ['📄 Aquí tenemos el flujo secundario'],
@@ -31,6 +43,7 @@ const flowSecundario = addKeyword(['2', 'siguiente']).addAnswer(
         fechaFinal = new Date();
         fechaFinal.setMinutes(fechaFinal.getMinutes() + 2);
         const data = await leerJson();
+
             for (const item of data) {
                 if (item.num == ctx.from) {
                     item.dateFinal = fechaFinal;
@@ -41,8 +54,12 @@ const flowSecundario = addKeyword(['2', 'siguiente']).addAnswer(
 
 const FlowNuevos = addKeyword(['1','Primero']).addAnswer(
     [
-        '📄 Aquí encontras las documentación recuerda que puedes mejorarla',
-        'https://bot-whatsapp.netlify.app/',
+        '📄 Puede abonar con transferencia:',
+        'CVU: 0000000233428352423945',
+        'Nombre: Leonardo Contreras',
+        'Cuit:4325235739',
+        '📄 Enlace de mercadopago:',
+        'https://mercadopago.netlify.app/',
         '\n*2* Para siguiente paso.',
     ],
     null,
@@ -52,8 +69,7 @@ const FlowNuevos = addKeyword(['1','Primero']).addAnswer(
 
 const flowTuto = addKeyword(['4', 'Cuatro']).addAnswer(
     [
-        '🙌 Aquí encontras un ejemplo rapido',
-        'https://bot-whatsapp.netlify.app/docs/example/',
+        '📃 Para buscar la receta tendra que ir a tal lugar',
         '\n*2* Para siguiente paso.',
     ],
     null,
@@ -75,7 +91,7 @@ const flowPrevios = addKeyword(['2', 'Dos']).addAnswer(
 )
 
 const flowConsultas = addKeyword(['3','Consultas']).addAnswer(
-    ['🤪 Únete al discord', 'https://link.codigoencasa.com/DISCORD', '\n*2* Para siguiente paso.'],
+    ['🤪 Deje aca la consulta y se le respondera en breve', '\n*2* Para siguiente paso.'],
     null,
     null,
     [flowSecundario]
@@ -85,6 +101,7 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
     .addAction(async (ctx, { flowDynamic, endFlow , provider }) => {
             fechaInicial = new Date()
             const data = await leerJson()
+
             const a = await provider.getInstance();
             await a.sendPresenceUpdate('composing',ctx.key.remoteJid)
             
@@ -101,11 +118,10 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
                     return;  
                 }
             }
-            data.push({ num: ctx.from, dateInicial: fechaInicial, dateFinal: "" }); // Agrega el nuevo número al final del JSON
+            data.push({ num: ctx.from, dateInicial: fechaInicial, dateFinal: "" });
             escribirJson(data)
         })
     .addAnswer(['🙌 Hola bienvenido a la clínica de Leonardo'],{delay:3200,},null)
-    
     .addAnswer(
         [
             '👉 *1* Turnos pacientes nuevos',
