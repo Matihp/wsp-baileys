@@ -2,10 +2,29 @@
   key: {
     remoteJid: '5493462645267@s.whatsapp.net',
     fromMe: false,
-    id: '1D6E7890ABC519A8E1ECF3C460F54B86',
+    id: 'C4850E99210E1DBB865A832B5010CFD5',
     participant: undefined
   },
-  messageTimestamp: 1684809538,
+  messageTimestamp: 1684975012,
+  pushName: 'Matias Contreras',
+  message: Message {
+    conversation: 'Holaa',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Holaa',
+  from: '5493462645267'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '5493462645267@s.whatsapp.net',
+    fromMe: false,
+    id: '15EBC8AB50233468097F41148C5666C2',
+    participant: undefined
+  },
+  messageTimestamp: 1684975037,
   pushName: 'Matias Contreras',
   message: Message {
     conversation: '3',
@@ -15,5 +34,43 @@
     }
   },
   body: '3',
+  from: '5493462645267'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '5493462645267@s.whatsapp.net',
+    fromMe: false,
+    id: '234A6BE0802B4BE31F274979254BCF42',
+    participant: undefined
+  },
+  messageTimestamp: 1684975041,
+  pushName: 'Matias Contreras',
+  message: Message {
+    conversation: '2',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: '2',
+  from: '5493462645267'
+}
+[handleMsg]:  {
+  key: {
+    remoteJid: '5493462645267@s.whatsapp.net',
+    fromMe: false,
+    id: 'C684060BF60DA91094165E965B72E8A1',
+    participant: undefined
+  },
+  messageTimestamp: 1684975050,
+  pushName: 'Matias Contreras',
+  message: Message {
+    conversation: 'Kfifi',
+    messageContextInfo: MessageContextInfo {
+      deviceListMetadata: [DeviceListMetadata],
+      deviceListMetadataVersion: 2
+    }
+  },
+  body: 'Kfifi',
   from: '5493462645267'
 }
