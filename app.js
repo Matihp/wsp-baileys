@@ -56,8 +56,6 @@ const FlowNuevos = addKeyword(['1','Primero']).addAnswer(
     [
         '📄 Puede abonar con transferencia:',
         'CVU: 0000000233428352423945',
-        'Nombre: Leonardo Contreras',
-        'Cuit:4325235739',
         '📄 Enlace de mercadopago:',
         'https://mercadopago.netlify.app/',
         '\n*2* Para siguiente paso.',
@@ -80,9 +78,6 @@ const flowTuto = addKeyword(['4', 'Cuatro']).addAnswer(
 const flowPrevios = addKeyword(['2', 'Dos']).addAnswer(
     [
         '🚀 Puedes aportar tu granito de arena a este proyecto',
-        '[*opencollective*] https://opencollective.com/bot-whatsapp',
-        '[*buymeacoffee*] https://www.buymeacoffee.com/leifermendez',
-        '[*patreon*] https://www.patreon.com/leifermendez',
         '\n*2* Para siguiente paso.',
     ],
     null,
@@ -101,9 +96,6 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
     .addAction(async (ctx, { flowDynamic, endFlow , provider }) => {
             fechaInicial = new Date()
             const data = await leerJson()
-
-            const a = await provider.getInstance();
-            await a.sendPresenceUpdate('composing',ctx.key.remoteJid)
             
             for (const item of data) {
                 if (item.num == ctx.from) {
@@ -118,6 +110,9 @@ const flowPrincipal = addKeyword(EVENTS.WELCOME)
                     return;  
                 }
             }
+            const a = await provider.getInstance();
+            await a.sendPresenceUpdate('composing',ctx.key.remoteJid)
+
             data.push({ num: ctx.from, dateInicial: fechaInicial, dateFinal: "" });
             escribirJson(data)
         })
